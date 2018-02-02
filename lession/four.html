@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <style>
+            .rColor{
+            color: red;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <div :class="{'rColor': cls}">{{msg}}</div>
+            <div :style="{'color': 'blue'}">{{msg}}</div>
+            <div :class="clsName">{{msg}}</div>
+            <div :style="{'fontSize': fs}">{{msg}}</div>
+            <img :src="url">
+        </div>
+
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    cls: true,
+                    clsName: 'rColor',
+                    fs: '20px',
+                    msg: 'hahaah',
+                    url: './logo2.png'
+                }
+            });
+        </script>
+    </body>
+</html>

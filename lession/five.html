@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <style>
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <div v-for="(item, index) in arr">
+                <i>{{ item }}: {{ index }}</i>
+            </div>
+            <div v-for="(item, key, index) in json">
+                <i>{{ item }}: {{ key }}: {{ index }}</i>
+            </div>
+        </div>
+
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    arr: [['a', 'b', 'c'], 'd', 'e'],
+                    json: {
+                        'name': 'panda',
+                        'age': '12'
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+        <style>
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <who>
+                <p slot="slot1">this is some content in who</p>
+                <ul slot="slot2">
+                    <li> panda</li>
+                    <li> peter</li>
+                </ul>
+                <span>slot 3 </span>
+                <span>slot 3 </span>
+                <span>slot 3 </span>
+            </who>
+        </div>
+        <template id="tmp">
+            <div>
+                <h3>{{ msg }}</h3>
+                <slot name="slot1"></slot>
+                <slot></slot>
+                <slot name="slot2"></slot>
+            </div>
+        </template>
+        <script>
+            var item = Vue.extend({
+                template: '#tmp',
+                data: function() {
+                    return {msg: 'this is out of who'};
+                },
+            });
+            new Vue({
+                el: '#app',
+                data: {
+                },
+                components: {
+                    'who': item,
+                }
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <style>
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <brother-one></brother-one>
+            <brother-two></brother-two>
+        </div>
+        <template id="brother-one">
+            <div>
+                <p>this is brother-one, i have a message===><i :style="{'color': color}">{{ msg }}</i> to send brother-two</p>
+                <button @click="send">send</button>
+            </div>
+        </template>
+        <template id="brother-two">
+            <div>
+                <p>this is brother-two, i have received a message===><i :style="{'color': color}">{{ msg }}</i> from brother-one</p>
+            </div>
+        </template>
+        <script>
+            var Event = new Vue();
+            new Vue({
+                el: '#app',
+                data: {
+                },
+                components: {
+                   'brother-one': {
+                       template: '#brother-one',
+                       data: function() {
+                           return {msg: 'hello my bro', color: 'red'};
+                       },
+                       methods: {
+                           send: function() {
+                               Event.$emit('word', this.msg);
+                           }
+                       }
+                   },
+                   'brother-two': {
+                       template: '#brother-two',
+                       data: function() {
+                           return {msg: '', color: 'blue'};
+                       },
+                       mounted: function() {
+                           var _this = this;
+                           Event.$on('word', function(msg) {
+                               _this.msg = msg;
+                           });
+                       }
+                   },
+                },
+                methods: {
+                }
+            });
+        </script>
+    </body>
+</html>

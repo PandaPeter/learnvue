@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <style>
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <how></how>
+            <who></who>
+        </div>
+        <div id="app2">
+            <who></who>
+        </div>
+        <template id="who">
+            <h1 @click="change">{{ msg }}</h1>
+        </template>
+        <script>
+            var item = Vue.extend({
+                data: function() {
+                    return {msg: 'he is panda'}
+                },
+                template: '#who',
+                methods: {
+                    change: function() {
+                        this.msg = 'who is panda'
+                    }
+                }
+            });
+            Vue.component('who', item);
+            new Vue({
+                el: '#app',
+                data: {
+                },
+                components: {
+                    'how': item
+                },
+                methods: {
+                }
+            });
+            new Vue({
+                el: '#app2'
+            });
+        </script>
+    </body>
+</html>

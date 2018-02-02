@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <style>
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <p v-text="value"></p>
+            
+            <p v-html="value"></p>
+            
+        </div>
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    value: '<h3>title</h3>'
+                },
+                methods: {
+                    clickfn: function() {
+                        this.value = '点击事件'
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

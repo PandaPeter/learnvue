@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div>
+                <label>{{ radioValue }}</label>
+                <input type="radio" v-model="radioValue" value="yes">
+                <input type="radio" v-model="radioValue" value="no">
+            </div>
+            <div>
+                <label>{{ checkValue }}</label>
+                <input type="checkbox" v-model="checkValue[0]">
+                <input type="checkbox" v-model="checkValue[1]">
+            </div>
+            <div>
+                <label>{{ msg }}</label>
+                <input type="text" v-model="msg">
+            </div>
+            <div>
+                <label>{{ seval }}<label>
+                <select v-model="seval">
+                    <option value="" selected>--</option>
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                </select>
+            </div>
+        </div>
+
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    radioValue: '',
+                    checkValue: ['', ''],
+                    msg: '',
+                    seval: '',
+                }
+            });
+        </script>
+    </body>
+</html>

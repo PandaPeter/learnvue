@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+        <style>
+            .router-link-active{
+                color: blue;
+            }
+            ul li{
+                display: inline-block;
+                padding: 10px 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+             <div>
+                <router-link to="/home">Home</router-link> <!-- 会被vue识别，自动显示成a标签-->
+                <router-link to="/list">List</router-link> <!-- 会被vue识别，自动显示成a标签-->
+                <router-link to="/users">Users</router-link> <!-- 会被vue识别，自动显示成a标签-->
+            </div>
+            <div>
+                <router-view></router-view>    <!-- 点击上面的link标签由，需要显示模板的地方 -->
+            </div>
+        </div>
+        <template id="tmp-user">
+            <div>
+                <h3>users</h3>
+                <hr>
+                <ul>
+                    <li><router-link to="/users/panda/16">panda</router-link></li>
+                    <li><router-link to="/users/peter">peter</router-link></li>
+                </ul>
+                <hr>
+                <router-view></router-view>
+            </div>
+        </template>
+        <script>
+            var home = {
+                template: '<h1>this is home page</h1>'
+            };
+            var list = {
+                template: '<h1>this is list page</h1>'
+            };
+            var users = {
+                template: '#tmp-user'
+            }
+            var panda = {
+                template: '<span>this is panda{{$route.params.pid}}</span>'
+            }
+            var peter = {
+                template: '<span>this is peter</span>'
+            }
+            var routerArr = [
+                {path: '/home', component: home},
+                {path: '/list', component: list},
+                {path: '/users', component: users, children: [
+                    {path: '/users/panda/:pid', component: panda},
+                    {path: '/users/peter', component: peter},
+                    ]
+                },
+                {path: '*', component: home},
+            ];
+            var router = new VueRouter({
+                 routes:routerArr,
+            });
+            new Vue({
+                el: '#app',
+                data: {
+                },
+                router: router,
+            });
+        </script>
+    </body>
+</html>

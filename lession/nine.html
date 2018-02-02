@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <style>
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <p v-test>v-test</p>
+            
+            <p v-test-blue>v-test-blue</p>
+            
+            <p v-test-orange="{'color': 'orange'}">v-test-orange</p>
+        </div>
+        <script>
+            Vue.directive('test', function(el){
+                el.style.color = 'red';
+            });
+            Vue.directive('testBlue', function(el) {
+                el.style.color = 'blue';
+            });
+            Vue.directive('testOrange', function(el, args) {
+                console.log(args);
+                el.style.color = args.value.color;
+            });
+            new Vue({
+                el: '#app',
+                data: {
+                },
+                methods: {
+                }
+            });
+        </script>
+    </body>
+</html>
